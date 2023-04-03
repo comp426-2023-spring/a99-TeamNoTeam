@@ -1,3 +1,7 @@
+# UI Mockups:
+Created by Catherine Roberts using Figma:
+[Figma Prototype](https://www.figma.com/file/8xDLUkKcuobgoGigJUuu32/Untitled?node-id=0-1)
+
 # Meeting #1: Thurs, Mar 23rd
 
 - Discussed roles and assigned them
