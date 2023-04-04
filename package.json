@@ -1,0 +1,27 @@
+{
+  "name": "a99-teamnoteam",
+  "version": "1.0.0",
+  "description": "UNC campus dining hall meal review website.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2023-spring/a99-TeamNoTeam.git"
+  },
+  "author": "baileymerdith, croberts808, sadieamato",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2023-spring/a99-TeamNoTeam/issues"
+  },
+  "homepage": "https://github.com/comp426-2023-spring/a99-TeamNoTeam#readme",
+  "dependencies": {
+    "better-sqlite3": "^8.2.0",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
