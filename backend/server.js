@@ -17,6 +17,13 @@ app.listen(port, () => {
     console.log("Server listening on port " + port)
 })
 
+// Endpoint shows the home page
+app.get('/*', (req, res, next) => {
+    // TODO: Fill in the below to render the home page once
+    // res.render();
+    res.send("Home page works!") // this just filler for now
+})
+
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
 	
