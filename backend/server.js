@@ -1,14 +1,21 @@
 // Main file controlling the backend functionality of our website
 
 // Import statements
-
+import minimist from 'minimist';
 import sqlite3 from 'better-sqlite3';
 import express from 'express';
-import db from 'database.js';
+import db from './database.js';
 
 
 const app = express();
 
+const args = minimist(process.argv.slice(2));
+// if no port argument is passed in, use 3000 as the default
+const port = args.port || 3000
+
+app.listen(port, () => {
+    console.log("Server listening on port " + port)
+})
 
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {

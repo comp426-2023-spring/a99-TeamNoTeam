@@ -2,7 +2,7 @@
    1) users
    2) reviews
    3) logs */
-import { database } from "better-sqlite3"
+import database from "better-sqlite3"
 // create a new database connection
 const db = new database('heelmeals.db')
 // check to see if users table exists
@@ -17,7 +17,7 @@ if (row == undefined) {
             name VARCHAR, 
             username VARCHAR, 
             password VARCHAR,
-            email UNIQUE VARCHAR, 
+            email VARCHAR UNIQUE
         );
     `
     db.exec(sqlInit)
@@ -37,7 +37,7 @@ if (row2 == undefined) {
             photo VARCHAR,
             created DATE,
             location VARCHAR,
-            meal VARCHAR
+            meal VARCHAR,
             FOREIGN KEY(uid) REFERENCES users(id)
         );
     `
