@@ -21,7 +21,7 @@ app.listen(port, () => {
     console.log("Server listening on port " + port)
 })
 
-// Endpoint shows the home page
+// Endpoint shows the entry page
 app.get('/*', (req, res, next) => {
     res.render("index")
 })
