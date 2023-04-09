@@ -5,9 +5,13 @@ import minimist from 'minimist';
 import sqlite3 from 'better-sqlite3';
 import express from 'express';
 import db from './database.js';
+import {default as path} from 'path';
 
+const __dirname = path.resolve();
 
 const app = express();
+app.set('views', path.join(__dirname, '/frontend'))
+app.set("view engine", "ejs")
 
 const args = minimist(process.argv.slice(2));
 // if no port argument is passed in, use 3000 as the default
@@ -19,9 +23,7 @@ app.listen(port, () => {
 
 // Endpoint shows the home page
 app.get('/*', (req, res, next) => {
-    // TODO: Fill in the below to render the home page once
-    // res.render();
-    res.send("Home page works!") // this just filler for now
+    res.render("index")
 })
 
 // Endpoint creates user and adds it to the database
