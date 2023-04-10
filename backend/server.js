@@ -5,9 +5,14 @@ import minimist from 'minimist';
 import sqlite3 from 'better-sqlite3';
 import express from 'express';
 import db from './database.js';
+import {default as path} from 'path';
 
+const __dirname = path.resolve();
 
 const app = express();
+// enables us to pass in file names in the frontend directory to res.render statements
+app.set('views', path.join(__dirname, '/frontend'))
+app.set("view engine", "ejs")
 
 const args = minimist(process.argv.slice(2));
 // if no port argument is passed in, use 3000 as the default
@@ -17,22 +22,15 @@ app.listen(port, () => {
     console.log("Server listening on port " + port)
 });
 
-
-// Endpoint shows the home page
+// Endpoint shows the entry page
 app.get('/*', (req, res, next) => {
-    // TODO: Fill in the below to render the home page once
-    // res.render();
-    res.send("Home page works!") // this just filler for now
-});
-
+    res.render("index")
+})
 
 // Endpoint shows the login page
 app.get('/login', (req, res, next) => {
-    // TODO: Fill in the below to render the login page once
-    // res.render();
-    res.send("Login page works!") // this just filler for now
+    res.render(login);
 });
-
 
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
