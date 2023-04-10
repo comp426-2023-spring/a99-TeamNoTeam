@@ -40,7 +40,6 @@ app.get('/signup', (req, res, next) => {
     res.render("signup");
 });
 
-
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
 	
