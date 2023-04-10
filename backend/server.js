@@ -10,6 +10,7 @@ import {default as path} from 'path';
 const __dirname = path.resolve();
 
 const app = express();
+// enables us to pass in file names in the frontend directory to res.render statements
 app.set('views', path.join(__dirname, '/frontend'))
 app.set("view engine", "ejs")
 
