@@ -27,13 +27,19 @@ app.listen(port, () => {
 
 // Endpoint shows the entry page
 app.get('/', (req, res, next) => {
-    res.render("index")
-})
+    res.render("index");
+});
 
 // Endpoint shows the login page
 app.get('/login', (req, res, next) => {
     res.render("login");
 });
+
+// Endpoint shows the signup page
+app.get('/signup', (req, res, next) => {
+    res.render("signup");
+});
+
 
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
