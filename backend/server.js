@@ -14,6 +14,9 @@ const app = express();
 app.set('views', path.join(__dirname, '/frontend'))
 app.set("view engine", "ejs")
 
+// enables us to pass in file names from the public directory
+app.use(express.static(__dirname + '/public'));
+
 const args = minimist(process.argv.slice(2));
 // if no port argument is passed in, use 3000 as the default
 const port = args.port || 3000
@@ -23,13 +26,13 @@ app.listen(port, () => {
 });
 
 // Endpoint shows the entry page
-app.get('/*', (req, res, next) => {
+app.get('/', (req, res, next) => {
     res.render("index")
 })
 
 // Endpoint shows the login page
 app.get('/login', (req, res, next) => {
-    res.render(login);
+    res.render("login");
 });
 
 // Endpoint creates user and adds it to the database
