@@ -6,6 +6,7 @@ import sqlite3 from 'better-sqlite3';
 import express from 'express';
 import db from './database.js';
 import {default as path} from 'path';
+import bodyParser from 'body-parser';
 
 const __dirname = path.resolve();
 
@@ -16,6 +17,9 @@ app.set("view engine", "ejs")
 
 // enables us to pass in file names from the public directory
 app.use(express.static(__dirname + '/public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 const args = minimist(process.argv.slice(2));
 // if no port argument is passed in, use 3000 as the default
@@ -81,13 +85,15 @@ app.post('/user/new/', (req, res, next) => {
 // Endpoint allows a registered user to login and access the reviews page
 app.post('/login', (req, res, next) => {
     // Consolidate data from request
+    // Commented out lines that refer to a password for now, but we can add it back later if we add password functionality
     let userdata = {
 		username: req.body.username,
-		password: req.body.password
+		// password: req.body.password
 	}
 
     // See if username and corresponding password are in the database
-    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username} and password='${userdata.password}'`);
+    // const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}' and password='${userdata.password}'`);
+    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
 
     // If the username is not in the database (invalid login), refresh login page
@@ -101,7 +107,7 @@ app.post('/login', (req, res, next) => {
         req.app.set('username', found_user['username']);
         req.app.set('password', found_user['password']);
         req.app.set('email', found_user['email']);
-        res.redirect('/reviews'); 
+        res.redirect('/home'); 
     }
 
 });
