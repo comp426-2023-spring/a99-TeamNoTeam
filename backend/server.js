@@ -151,3 +151,18 @@ app.post('/profile', (req, res, next) => {
     // Refresh the profile page
     res.redirect('/profile');
 });
+
+
+// Endpoint deletes an account
+app.post('/profile/delete', (req, res, next) => {
+    
+    // Get the current user's username
+    let username = req.app.get('username');
+
+    // Delete the user from the database
+    const stmt1 = db.prepare(`DELETE FROM users WHERE username='${username}'`);
+    let deletion = stmt1.run();
+
+    // Redirect to the entry page
+    res.redirect('/');
+});
