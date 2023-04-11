@@ -1,3 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 h1 {
-    color: red;
+    color: white;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(75,156,211);
+}
+
+body {
+    background: rgb(75,156,211);
+    background: linear-gradient(135deg, rgba(75,156,211,1) 0%, rgba(94,139,206,1) 20%, rgba(117,120,193,1) 40%, rgba(138,99,173,1) 60%, rgba(153,77,146,1) 80%, rgba(160,53,113,1) 100%);
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.entry-button-space {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    justify-content: center;
+}
+
+.entry-buttons {
+    height: 60px;
+    width: 250px;
+    border: hidden;
+    border-radius: 16px;
+    margin-top: 30px;
+    transition-duration: .3s;
+}
+
+.entry-buttons:hover {
+    background-color: rgb(219, 219, 219);
 }
