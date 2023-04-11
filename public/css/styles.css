@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 h1 {
@@ -8,15 +8,23 @@ h1 {
 }
 
 h2 {
-    font-size: 16px;
-    font-weight: bold;
-    color: rgb(75,156,211);
+    font-size: 22px;
+    color: #994D92;
+    font-family: Roboto;
+    font-weight: 500;
 }
 
 h3 {
     font-size: 16px;
-    font-weight: bold;
     color: rgb(75,156,211);
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 15px;
+    color: rgb(175, 175, 175);
+    font-family: Roboto;
+    font-weight: 300;
 }
 
 body {
@@ -66,11 +74,53 @@ body {
 .login-box {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
     position: absolute;
     top:0; right: 0; left: 0; bottom: 0;
     width: 425px;
     height: 280px;
     background-color: white;
     border-radius: 16px;
+}
+
+.text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-input-box {
+    width: 370px;
+    height: 30px;
+    border: solid;
+    border-width: 1.25pt;
+    border-radius: 8px;
+    border-color: rgb(198, 198, 198);
+    align-content: left;
+}
+
+.text-input-example-text {
+    margin-left: 10px;
+    margin-top: -13px;
+}
+
+.login-button {
+    height: 45px;
+    width: 200px;
+    margin-top: 30px;
+    transition-duration: .3s;
+    box-shadow: 0px 3px 4px rgb(167, 167, 167);
+    background-color: rgb(75,156,211);
+    border: hidden;
+    border-radius: 16px;
+    align-items: center;
+    align-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: #61afe4;
 }
