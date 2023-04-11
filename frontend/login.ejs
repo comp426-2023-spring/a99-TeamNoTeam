@@ -12,20 +12,18 @@
     <h1 style="margin-left: 5px; margin-top: 0px">HeelMeals</h1>
 </div>
 
-<div class="login-box">
-    <h2>Welcome Back!</h2>
-    <div class="text-input">
+<form action="/login" method="POST">
+    <div class="login-box">
+      <h2>Welcome Back!</h2>
+      <div class="text-input">
         <div style="margin-bottom: -13px;">
-            <h4 style="font-weight: 400;"> <span style="color: black">Username</span> (Required)</h4>
+          <h4 style="font-weight: 400;"> <span style="color: black">Username</span> (Required)</h4>
         </div>
-        <div class="text-input-box">
-            <div class="text-input-example-text">
-                <h4>janedoe09</h4>
-            </div>
-        </div>
-    </div>
-    <a href="/home"><button class="login-button">Log In</button></a>
-    <h4>Not yet registered? 
+          <input class="text-input-box" type="text" name="username" placeholder="janedoe09">
+      </div>
+      <button type="submit" class="login-button">Log In</button>
+      <h4>Not yet registered? 
         <a href="/signup" style="text-decoration: none;"> <span style="font-weight: 500; color: #994D92;">Create Account</span></a>
-    </h4>
-</div>
+      </h4>
+    </div>
+</form>
