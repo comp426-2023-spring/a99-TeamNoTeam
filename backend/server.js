@@ -122,3 +122,32 @@ app.get('/profile', (req, res, next) => {
                             password: req.app.get('password'), 
                             email: req.app.get('email')});
 });
+
+
+// Endpoint updates a user's profile information
+app.post('/profile', (req, res, next) => {
+    
+    // Consolidate data from request
+    let userdata = {
+        name: req.body.name,
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
+	}
+
+    // Update user info based on the given username
+    // This is a bit buggy right now because it doesn't allow the username to be changed
+    // Also, could change another account in the database if the username's taken by another user
+    // Frontend may need to assert that the username cannot be changed?
+    const stmt1 = db.prepare(`UPDATE users SET name='${userdata.name}', password='${userdata.password}', email='${userdata.email}' WHERE username='${userdata.username}'`);
+    let update = stmt1.run();
+
+    // Since the current user has now been updated, we need to set our settings accordingly
+    req.app.set('name', found_user['name']);
+    req.app.set('username', found_user['username']);
+    req.app.set('password', found_user['password']);
+    req.app.set('email', found_user['email']);
+
+    // Refresh the profile page
+    res.redirect('/profile');
+});
