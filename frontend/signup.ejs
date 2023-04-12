@@ -13,3 +13,31 @@
         </span>
     <h1 style="margin-left: 5px; margin-top: 0px">HeelMeals</h1>
 </div>
+
+<form action="/login" method="POST">
+    <div class="signup-box">
+      <h2>Sign Up for HeelMeals</h2>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 style="font-weight: 400;"> <span style="color: black">Name</span> (Required)</h4>
+        </div>
+          <input class="text-input-box" type="text" name="name" placeholder="Jane Doe">
+      </div>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 style="font-weight: 400;"> <span style="color: black">Username</span> (Required)</h4>
+        </div>
+          <input class="text-input-box" type="text" name="username" placeholder="janedoe09">
+      </div>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 style="font-weight: 400;"> <span style="color: black">Email</span> (Required)</h4>
+        </div>
+          <input class="text-input-box" type="text" name="email" placeholder="janedoe09@email.com">
+      </div>
+      <button type="submit" class="login-button">Create Account</button>
+      <h4>Already registered? 
+        <a href="/login" style="text-decoration: none;"> <span style="font-weight: 500; color: #994D92;">Log In</span></a>
+      </h4>
+    </div>
+</form>
