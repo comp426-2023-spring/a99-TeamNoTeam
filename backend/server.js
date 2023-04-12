@@ -103,6 +103,7 @@ app.post('/login', (req, res, next) => {
     // If login was valid, navigate to reviews page
     } else { 
         // Set settings to certain values for displaying login info later
+        req.app.set('id', found_user['id']);
         req.app.set('name', found_user['name']);
         req.app.set('username', found_user['username']);
         req.app.set('password', found_user['password']);
@@ -128,25 +129,45 @@ app.get('/profile', (req, res, next) => {
 app.post('/profile', (req, res, next) => {
     
     // Consolidate data from request
-    let userdata = {
+    let update = {
         name: req.body.name,
 		username: req.body.username,
 		password: req.body.password,
 		email: req.body.email,
 	}
 
-    // Update user info based on the given username
-    // This is a bit buggy right now because it doesn't allow the username to be changed
-    // Also, could change another account in the database if the username's taken by another user
-    // Frontend may need to assert that the username cannot be changed?
-    const stmt1 = db.prepare(`UPDATE users SET name='${userdata.name}', password='${userdata.password}', email='${userdata.email}' WHERE username='${userdata.username}'`);
-    let update = stmt1.run();
+    // ------ Update user info based on the given username --------
 
-    // Since the current user has now been updated, we need to set our settings accordingly
-    req.app.set('name', found_user['name']);
-    req.app.set('username', found_user['username']);
-    req.app.set('password', found_user['password']);
-    req.app.set('email', found_user['email']);
+    // See if requested username is already in the database
+    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${update.username}'`);
+    let found_user = stmt1.get();
+
+    // If the username is not already in the database, update the current user
+    if (found_user === undefined) { 
+        const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', password='${update.password}', email='${update.email}', username='${update.username}', WHERE id='${req.app.get('id')}'`);
+        let updated_user = stmt1.run();
+    } else {
+        // If requested username is in the database and the id in that row matches the current row, do the update (in case where username isn't being changed)
+        if (found_user['id'] === req.app.get('id')) {
+            const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', password='${update.password}', email='${update.email}', username='${update.username}', WHERE id='${req.app.get('id')}'`);
+            let updated_user = stmt1.run();
+        } else {
+            // If requested username is in the database and the id does NOT match, do not allow the user to change their username (it's taken)
+            // TODO: communicate to the user what happened instead of just refreshing
+            res.redirect('/profile');
+            return; // Stop here in this case
+        } 
+    }
+
+    // Get the new updated user from the database
+    const stmt2 = db.prepare(`SELECT * FROM users WHERE id='${req.app.get('id')}'`);
+    let found_new_user = stmt1.get();
+
+    // Since the current user has now been updated, we need to reset our settings accordingly
+    req.app.set('name', found_new_user['name']);
+    req.app.set('username', found_new_user['username']);
+    req.app.set('password', found_new_user['password']);
+    req.app.set('email', found_new_user['email']);
 
     // Refresh the profile page
     res.redirect('/profile');
@@ -155,12 +176,9 @@ app.post('/profile', (req, res, next) => {
 
 // Endpoint deletes an account
 app.post('/profile/delete', (req, res, next) => {
-    
-    // Get the current user's username
-    let username = req.app.get('username');
 
     // Delete the user from the database
-    const stmt1 = db.prepare(`DELETE FROM users WHERE username='${username}'`);
+    const stmt1 = db.prepare(`DELETE FROM users WHERE username='${req.app.get('username')}'`);
     let deletion = stmt1.run();
 
     // Redirect to the entry page
