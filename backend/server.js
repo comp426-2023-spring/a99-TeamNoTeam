@@ -70,9 +70,8 @@ app.post('/user/new/', (req, res, next) => {
     if (found_user === undefined) {
         const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
         db.exec(stmt)
-        res.status(200).json({"message": userdata.name + " created user " + userdata.username});
-        // TODO: Fill in what to render here when HTML files are created
-        // res.render();
+        console.log(userdata.name + " created user " + userdata.username);
+        res.render("index");
 
     } else {
         // If the user is already in the database and cannot be created
