@@ -49,6 +49,11 @@ app.get('/home', (req, res, next) => {
     res.render("home");
 });
 
+// Endpoint shows the profile page
+app.get('/profile', (req, res, next) => {
+    res.render("profile");
+});
+
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
 	
