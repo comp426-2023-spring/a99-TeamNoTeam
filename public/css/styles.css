@@ -124,3 +124,18 @@ body {
 .login-button:hover {
     background-color: #61afe4;
 }
+
+/* Sign Up Page*/
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    position: absolute;
+    top:0; right: 0; left: 0; bottom: 0;
+    width: 460px;
+    height: 420px;
+    background-color: white;
+    border-radius: 16px;
+}
