@@ -139,3 +139,24 @@ body {
     background-color: white;
     border-radius: 16px;
 }
+
+/*  Home page */
+.profile-button {
+    height: 45px;
+    width: 200px;
+    margin-top: 30px;
+    transition-duration: .3s;
+    box-shadow: 0px 3px 4px #7a437d;
+    background-color: rgb(255, 255, 255);
+    border: hidden;
+    border-radius: 16px;
+    align-items: center;
+    align-content: center;
+    color: rgb(75,156,211);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-button:hover {
+    background-color: #e7e7e7;
+}
