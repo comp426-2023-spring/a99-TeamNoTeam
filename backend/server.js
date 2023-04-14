@@ -131,8 +131,8 @@ app.post('/profile', (req, res, next) => {
     let update = {
         name: req.body.name,
 		username: req.body.username,
-		password: req.body.password,
-		email: req.body.email,
+		// password: req.body.password,
+		// email: req.body.email,
 	}
 
     // ------ Update user info based on the given username --------
@@ -143,12 +143,12 @@ app.post('/profile', (req, res, next) => {
 
     // If the username is not already in the database, update the current user
     if (found_user === undefined) { 
-        const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', password='${update.password}', email='${update.email}', username='${update.username}', WHERE id='${req.app.get('id')}'`);
+        const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', username='${update.username}' WHERE id='${req.app.get('id')}'`);
         let updated_user = stmt1.run();
     } else {
         // If requested username is in the database and the id in that row matches the current row, do the update (in case where username isn't being changed)
         if (found_user['id'] === req.app.get('id')) {
-            const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', password='${update.password}', email='${update.email}', username='${update.username}', WHERE id='${req.app.get('id')}'`);
+            const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', username='${update.username}' WHERE id='${req.app.get('id')}'`);
             let updated_user = stmt1.run();
         } else {
             // If requested username is in the database and the id does NOT match, do not allow the user to change their username (it's taken)
