@@ -49,6 +49,11 @@ app.get('/home', (req, res, next) => {
     res.render("home");
 });
 
+// Endpoint shows the create review page
+app.get('/create_review', (req, res, next) => {
+    res.render("create_review"); 
+});
+
 // Endpoint creates user and adds it to the database
 app.post('/user/new/', (req, res, next) => {
 	
@@ -182,4 +187,54 @@ app.post('/profile/delete', (req, res, next) => {
 
     // Redirect to the entry page
     res.redirect('/');
+});
+
+
+// Endpoint logs out the current user
+app.get('/profile/logout', (req, res, next) => {
+
+    // Reset the settings
+    req.app.set('id', -1) // dummy id 
+    req.app.set('name', '');
+    req.app.set('username', '');
+    req.app.set('password', '');
+    req.app.set('email', '');
+
+    // Take the user back to the entry page
+    res.redirect('/');
+});
+
+// Endpoint creates a new review and adds it to the database
+app.post('/home', (req, res, next) => {
+    
+    // Consolidate data from request and current user settings
+    let review = {
+        uid: req.app.get('id'),
+        title: req.body.title,
+		desc: req.body.desc,
+		rating: req.body.rating,
+		photo: req.body.photo,
+        created: req.body.created,
+        location: req.body.location,
+        meal: req.body.meal
+	}
+    // Question: do I need to do anything with a foreign key here?
+    // not exactly sure how the reviews and users link 
+
+    // Another question: should we add a username field to the reviews db so we can 
+    // access the username who posted it to display?
+
+    // Insert new review into database
+    const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created, location, meal) 
+        VALUES ('${review.uid}', '${review.title}', 
+        '${review.desc}', '${review.rating}',
+        '${review.photo}', '${review.created}', 
+        '${review.location}', '${review.meal}');`;
+    db.exec(stmt)
+    console.log(req.app.get('name') + " created review " + review.title);
+
+    // Refresh the reviews page
+    res.render("home");
+
+
 });
