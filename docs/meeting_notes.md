@@ -38,3 +38,10 @@ created an issue on GitHub for help
     - Catherine: Add stories to project board
     - Sadie: Add documentation for the routes added for stories 1 and 2
 
+
+# Meeting #4: Thurs, April 13th
+- Updated each other on story progress so far and some edge cases that need to be fixed
+- Decided on tasks for next week
+    - Start working on stories 4 and 5
+        - Bailey: Link basic wip pages for the create review and reviews page
+        - Sadie: Write routes, update meeting + endpoints documentation
