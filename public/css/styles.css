@@ -160,3 +160,23 @@ body {
 .profile-button:hover {
     background-color: #e7e7e7;
 }
+
+/*  Account Details page */
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    position: absolute;
+    top:0; right: 0; left: 0; bottom: 0;
+    width: 480px;
+    height: 430px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.required:after {
+    content: " *";
+    color: blue;
+}

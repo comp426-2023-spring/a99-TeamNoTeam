@@ -2,4 +2,70 @@
     TODO (for stories 1 & 2): 
     - add profile button
  -->
- <h1>Profile page works!</h1>
+ <link href="/css/styles.css" rel="stylesheet" type="text/css">
+ <a href="/">
+    <div class="title">
+        <span class="material-symbols-outlined" style="color:white">
+            lunch_dining
+            </span>
+        <h1 style="margin-left: 5px; margin-top: 0px">HeelMeals</h1>
+    </div>
+</a>
+
+<div style="position: absolute; top: 210px; left: 370px;">
+    <a href="/home">
+        <button class="profile-button"> 
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <span style="position: relative; top: 12px;left: 4px;">Home</span>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </button>
+    </a>
+</div>
+
+<div style="position: absolute; top: 280px; left: 370px;">
+    <a href="/">
+        <button class="profile-button"> 
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <span style="position: relative; top: 12px;left: 4px;">Log Out</span>
+                <span class="material-symbols-outlined">logout</span>
+            </div>
+        </button>
+    </a>
+</div>
+
+<div style="position: absolute; top: 350px; left: 370px;">
+    <a href="/profile/delete">
+        <button class="profile-button"> 
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
+                <span class="material-symbols-outlined">delete</span>
+            </div>
+        </button>
+    </a>
+</div>
+
+<form action="/user/new" method="POST">
+    <div class="signup-box">
+      <h2>User Details</h2>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 style="font-weight: 400;"> <span style="color: black">Name</span></h4>
+        </div>
+          <input class="text-input-box" type="text" name="name" placeholder=<%- name -%>>
+      </div>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 style="font-weight: 400;"> <span style="color: black">Username</span></h4>
+        </div>
+          <input class="text-input-box" type="text" name="username" placeholder=<%- username -%>>
+      </div>
+      <div class="text-input">
+        <div style="margin-bottom: -13px;">
+          <h4 class="required" style="font-weight: 400;"> <span style="color: black">Email</span> (Cannot be Changed) </h4>
+        </div>
+          <input class="text-input-box" type="text" name="email" placeholder=<%- email -%> disabled>
+      </div>
+      <button type="submit" class="login-button">Update Account</button>
+    </div>
+</form>
