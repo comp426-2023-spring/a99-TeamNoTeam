@@ -150,6 +150,9 @@ body {
 }
 
 .review-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     height: 180px;
     width: 700px;
     background-color: white;
