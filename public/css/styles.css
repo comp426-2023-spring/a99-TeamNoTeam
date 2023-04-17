@@ -141,6 +141,21 @@ body {
 }
 
 /*  Home page */
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+.review-box {
+    height: 180px;
+    width: 700px;
+    background-color: white;
+    border-radius: 16px;
+}
+
 .profile-button {
     height: 45px;
     width: 200px;
@@ -193,6 +208,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: -25px;
+    justify-content: flex-start;
 }
 
 .edit-account-box {
