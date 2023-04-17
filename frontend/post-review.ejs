@@ -28,22 +28,22 @@
           <input class="text-input-box" type="text" name="description" placeholder="If you like sushi, head to Chase...">
       </div>
       <div class="review-rating-input">
-        <h4 style="font-weight: 400;"> <span style="color: black">Rating</span> (Required)</h4>
-      <ul class="likert">
-        <li> 1 Star </li>
-        <li><input type="radio" name="guilty" value="1" /></li>
-        <li><input type="radio" name="guilty" value="2" /></li>
-        <li><input type="radio" name="guilty" value="3" /></li>
-        <li><input type="radio" name="guilty" value="4" /></li>
-        <li><input type="radio" name="guilty" value="5" /></li>
-        <li> 5 Stars </li>
-      </ul>
+        <h4 style="font-weight: 400;"> <span style="color: black">Rating Out of 5</span> (Required)</h4>
+        <ul class="likert">
+          <li style="margin-right: 10px"> <span style="font-weight: 500; color: #994D92; font-family: Roboto">1</span></li>
+          <li><input type="radio" name="guilty" value="1" /></li>
+          <li><input type="radio" name="guilty" value="2" /></li>
+          <li><input type="radio" name="guilty" value="3" /></li>
+          <li><input type="radio" name="guilty" value="4" /></li>
+          <li><input type="radio" name="guilty" value="5" /></li>
+          <li style="margin-left: 10px;"> <span style="font-weight: 500; color: #994D92; font-family: Roboto">5</span> </li>
+        </ul>
       </div>
       <div style="margin-top: -15px;" class="text-input">
           <div style="margin-bottom: -13px;">
             <h4 style="font-weight: 400;"> <span style="color: black">Photo</span> (Optional)</h4>
           </div>
-            <input class="text-input-box" type="file" name="photo" >
+            <input type="file" name="photo" >
         </div>
     </div>
     <button type="submit" class="login-button">Post Review</button>
