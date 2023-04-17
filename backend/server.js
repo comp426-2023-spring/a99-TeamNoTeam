@@ -50,8 +50,9 @@ app.get('/home', (req, res, next) => {
 });
 
 // Endpoint shows the create review page
-app.get('/create_review', (req, res, next) => {
-    res.render("create_review"); 
+app.get('/post', (req, res, next) => {
+    res.render("post-review");
+
 });
 
 // Endpoint creates user and adds it to the database
