@@ -12,58 +12,82 @@
     </div>
 </a>
 
-<div style="position: absolute; top: 230px; left: 340px;">
-    <a href="/home">
-        <button class="profile-button"> 
-            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
-                <span style="position: relative; top: 12px;left: 4px;">Home</span>
-                <span class="material-symbols-outlined">home</span>
+<div class="profile-container">
+    <div class="profile-actions-container">
+        <div>
+            <a href="/home">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Home</span>
+                        <span class="material-symbols-outlined">home</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/profile">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Account Details</span>
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/profile">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Your Reviews</span>
+                        <span class="material-symbols-outlined">rate_review</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Log Out</span>
+                        <span class="material-symbols-outlined">logout</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <form action="/profile/delete" method="POST">
+                <button class="profile-button" id="deleteButton"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
+                        <span class="material-symbols-outlined">delete</span>
+                    </div>
+                </button>
+            </form>   
+        </div>
+    </div>   
+    <form action="/profile" method="POST">
+        <div class="edit-account-box">
+          <h2 style="margin-bottom: -10px">User Details</h2>
+          <div class="text-input">
+            <div style="margin-bottom: -13px;">
+              <h4 style="font-weight: 400;"> <span style="color: black">Name</span></h4>
             </div>
-        </button>
-    </a>
+              <input class="text-input-box" type="text" name="name" placeholder="<%- name -%>"">
+          </div>
+          <div class="text-input">
+            <div style="margin-bottom: -13px;">
+              <h4 style="font-weight: 400;"> <span style="color: black">Username</span></h4>
+            </div>
+              <input class="text-input-box" type="text" name="username" placeholder="<%- username -%>">
+          </div>
+          <div class="text-input">
+            <div style="margin-bottom: -13px;">
+              <h4 class="required" style="font-weight: 400;"> <span style="color: black">Email</span> (Cannot be Changed) </h4>
+            </div>
+              <input class="text-input-box" type="text" name="email" placeholder="<%- email -%>" disabled>
+          </div>
+          <button type="submit" class="login-button" style="margin-bottom: 20px">Update Account</button>
+        </div>
+    </form>
 </div>
 
-<div style="position: absolute; top: 300px; left: 340px;">
-    <a href="/">
-        <button class="profile-button"> 
-            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
-                <span style="position: relative; top: 12px;left: 4px;">Log Out</span>
-                <span class="material-symbols-outlined">logout</span>
-            </div>
-        </button>
-    </a>
-</div>
-
-<div style="position: absolute; top: 370px; left: 340px;">
-        <button class="profile-button" id="deleteButton"> 
-            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
-                <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
-                <span class="material-symbols-outlined">delete</span>
-            </div>
-        </button>
-</div>
-
-<form action="/profile" method="POST">
-    <div class="signup-box">
-      <h2>User Details</h2>
-      <div class="text-input">
-        <div style="margin-bottom: -13px;">
-          <h4 style="font-weight: 400;"> <span style="color: black">Name</span></h4>
-        </div>
-          <input class="text-input-box" type="text" name="name" placeholder="<%- name -%>"">
-      </div>
-      <div class="text-input">
-        <div style="margin-bottom: -13px;">
-          <h4 style="font-weight: 400;"> <span style="color: black">Username</span></h4>
-        </div>
-          <input class="text-input-box" type="text" name="username" placeholder="<%- username -%>">
-      </div>
-      <div class="text-input">
-        <div style="margin-bottom: -13px;">
-          <h4 class="required" style="font-weight: 400;"> <span style="color: black">Email</span> (Cannot be Changed) </h4>
-        </div>
-          <input class="text-input-box" type="text" name="email" placeholder="<%- email -%>" disabled>
-      </div>
-      <button type="submit" class="login-button">Update Account</button>
-    </div>
-</form>
