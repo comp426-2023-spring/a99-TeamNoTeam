@@ -3,6 +3,7 @@
     - add profile button
  -->
  <link href="/css/styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <a href="/">
     <div class="title">
         <span class="material-symbols-outlined" style="color:white">
@@ -12,7 +13,7 @@
     </div>
 </a>
 
-<div style="position: absolute; top: 100px; right: 100px;">
+<div class="profile-actions-container" style="position: absolute; top: 20%; right: 200px;">
     <a href="/profile">
         <button class="profile-button"> 
             <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
@@ -29,4 +30,35 @@
             </div>
         </button>
     </a>
+</div>
+
+<div class="reviews-page-container">
+    <div style="margin-top:10px;" class="review-box">
+        <img class="review-image" src="images/cds_sushi.jpg">
+        <div class="review-description">
+            <h5 style="margin-bottom: 15px;">Chase has good sushi!</h5>
+            <div class="review-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star unchecked"></span>
+            </div>
+            <h4>I was skeptical at first of eating raw fish at a dining hall -- but it was actually pretty good! It’s no Spicy 9 or Kurama, but I hope sushi becomes a staple at dinner, and maybe even at late night!</h4>
+        </div>
+    </div>
+    <div style="margin-bottom: 10px;" class="review-box">
+        <img class="review-image" src="images/cds_waffle.jpg">
+        <div class="review-description">
+            <h5 style="margin-bottom: 15px;">Unpopular Opinion: I don't Like Waffles</h5>
+            <div class="review-rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star unchecked"></span>
+                <span class="fa fa-star unchecked"></span>
+                <span class="fa fa-star unchecked"></span>
+            </div>
+            <h4>I don't like waffles but I decided to get them anyways. They were not good. I don't recommend to anyone who does like waffles. </h4>
+        </div>
+    </div>
 </div>
