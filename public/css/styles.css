@@ -293,3 +293,18 @@ body {
     background-color: white;
     border-radius: 16px;
 }
+
+.review-inputs {
+    width: 400px;
+}
+
+.review-rating-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.likert li {
+    float: left;
+    list-style-type: none;
+    margin-top: 5px;
+}
