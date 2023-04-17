@@ -28,6 +28,13 @@ h4 {
     line-height: 20px;
 }
 
+h5 {
+    font-size: 18px;
+    color: black;
+    font-family: Roboto;
+    font-weight: 500;
+}
+
 body {
     background: rgb(75,156,211);
     background: linear-gradient(135deg, rgba(75,156,211,1) 0%, rgba(94,139,206,1) 20%, rgba(117,120,193,1) 40%, rgba(138,99,173,1) 60%, rgba(153,77,146,1) 80%, rgba(160,53,113,1) 100%);
@@ -148,23 +155,23 @@ body {
     position: absolute;
     top: 20%;
     left: 10%;
+    background-color: white;
+    border-radius: 16px;
 }
 
 .review-box {
     display: flex;
     flex-direction: row;
     margin: auto;
-    height: 220px;
+    height: 170px;
     width: 700px;
-    background-color: white;
-    border-radius: 16px;
     justify-content: flex-start;
     align-items: center;
 }
 
 .review-image {
-    height: 180px;
-    width: 180px;
+    height: 130px;
+    width: 130px;
     border-radius: 6px;
     margin-left: 20px;
 }
