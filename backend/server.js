@@ -213,11 +213,10 @@ app.get('/profile/logout', (req, res, next) => {
 app.post('/home', upload.single('photo'), (req, res, next) => {
     // gets the time the review was posted
     const time_posted = new Date();
-    // gets the image path to the image buffer that was saved in /images folder
+    // gets the path to the image buffer that was saved in /images folder
     let path = req.file.path;
-    console.log(path)
 
-    // converts image buffer to image and saves the image to the /images folder by excluding 'public/' from all path names
+    // converts image buffer to image and saves the image to the /images folder
     const imageBuffer = fs.readFileSync(path)
     fs.writeFile((path + '.jpg'), imageBuffer, err => {
         if (err) {
@@ -226,7 +225,7 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
           console.log('Image saved to file system');
         }
       });
-    // edits path so that the photo field in the database can be used on the frontend
+    // edits path so that the photo field in the database can be used on the frontend by excluding 'public/' from all path names
     path = path.slice(7)
     // Consolidate data from request and current user settings
     let review = {
@@ -259,8 +258,8 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
 
 
 // Endpoint was used to test the image upload system
+// Can be deleted later
 app.get('/test', (req, res, next) => {
-    // this can be deleted later
     const stmt = db.prepare(`SELECT photo FROM reviews;`);
     let response = stmt.get()
     res.render('image', {image: response.photo})
