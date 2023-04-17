@@ -191,6 +191,15 @@ body {
     margin-bottom: -10px;
 }
 
+.checked {
+    color: rgb(255, 183, 0);
+    font-size: large;
+}
+
+.unchecked {
+    color: rgb(196, 196, 196)
+}
+
 .profile-button {
     height: 45px;
     width: 200px;
