@@ -7,6 +7,10 @@ import express from 'express';
 import db from './database.js';
 import {default as path} from 'path';
 import bodyParser from 'body-parser';
+import multer from 'multer';
+import fs from 'fs';
+
+const upload = multer({ dest: 'public/images/'})
 
 const __dirname = path.resolve();
 
@@ -206,18 +210,31 @@ app.get('/profile/logout', (req, res, next) => {
 });
 
 // Endpoint creates a new review and adds it to the database
-app.post('/home', (req, res, next) => {
-    
+app.post('/home', upload.single('photo'), (req, res, next) => {
+    // gets the time the review was posted
+    const time_posted = new Date();
+    // gets the path to the image buffer that was saved in /images folder
+    let path = req.file.path;
+
+    // converts image buffer to image and saves the image to the /images folder
+    const imageBuffer = fs.readFileSync(path)
+    fs.writeFile((path + '.jpg'), imageBuffer, err => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('Image saved to file system');
+        }
+      });
+    // edits path so that the photo field in the database can be used on the frontend by excluding 'public/' from all path names
+    path = path.slice(7)
     // Consolidate data from request and current user settings
     let review = {
         uid: req.app.get('id'),
         title: req.body.title,
-		desc: req.body.desc,
+		desc: req.body.description,
 		rating: req.body.rating,
-		photo: req.body.photo,
-        created: req.body.created,
-        location: req.body.location,
-        meal: req.body.meal
+        photo: path,
+        created: time_posted
 	}
     // Question: do I need to do anything with a foreign key here?
     // not exactly sure how the reviews and users link 
@@ -226,11 +243,10 @@ app.post('/home', (req, res, next) => {
     // access the username who posted it to display?
 
     // Insert new review into database
-    const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created, location, meal) 
+    const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
         VALUES ('${review.uid}', '${review.title}', 
         '${review.desc}', '${review.rating}',
-        '${review.photo}', '${review.created}', 
-        '${review.location}', '${review.meal}');`;
+        '${review.photo}', '${review.created}');`;
     db.exec(stmt)
     console.log(req.app.get('name') + " created review " + review.title);
 
@@ -238,4 +254,13 @@ app.post('/home', (req, res, next) => {
     res.render("home");
 
 
+});
+
+
+// Endpoint was used to test the image upload system
+// Can be deleted later
+app.get('/test', (req, res, next) => {
+    const stmt = db.prepare(`SELECT photo FROM reviews;`);
+    let response = stmt.get()
+    res.render('image', {image: response.photo})
 });
