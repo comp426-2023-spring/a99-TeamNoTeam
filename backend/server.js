@@ -264,3 +264,21 @@ app.get('/test', (req, res, next) => {
     let response = stmt.get()
     res.render('image', {image: response.photo})
 });
+
+
+// Endpoint gets all the reviews from the database
+app.get('/home', (req, res, next) => {
+
+    // Select all reviews from the database
+    const stmt = db.prepare(`SELECT * FROM reviews;`);
+    let reviews = stmt.all();
+
+    if(reviews === undefined) {
+        return; // do nothing
+    } else {
+        res.send(all);
+    }
+});
+
+
+// Endpoint gets all reviews posted by the current user
