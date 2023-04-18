@@ -266,7 +266,7 @@ app.get('/test', (req, res, next) => {
 });
 
 
-// Endpoint gets all the reviews from the database
+// Endpoint gets all reviews from the database
 app.get('/home', (req, res, next) => {
 
     // Select all reviews from the database
@@ -276,9 +276,21 @@ app.get('/home', (req, res, next) => {
     if(reviews === undefined) {
         return; // do nothing
     } else {
-        res.send(all);
+        res.send(reviews);
     }
 });
 
 
 // Endpoint gets all reviews posted by the current user
+app.get('/profile/reviews', (req, res, next) => {
+
+    // Select all reviews from the database made by the current user (through the uid column)
+    const stmt = db.prepare(`SELECT * FROM reviews WHERE uid='${req.app.get('id')}'`);
+    let reviews = stmt.all();
+
+    if(reviews === undefined) {
+        return; // do nothing
+    } else {
+        res.send(reviews);
+    }
+});
