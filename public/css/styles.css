@@ -289,7 +289,32 @@ body {
     position: absolute;
     top:0; right: 0; left: 0; bottom: 0;
     width: 480px;
-    height: 85%;
+    height: 80%;
     background-color: white;
     border-radius: 16px;
+    margin-top: 75px;
 }
+
+.review-inputs {
+    width: 400px;
+    margin-top: -20px;
+}
+
+.review-rating-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.likert li {
+    float: left;
+    list-style-type: none;
+}
+
+input[type='radio'] {
+    height: 15px;
+    width: 15px;
+}
+
+input[type='file']{
+    color:white;
+  }
