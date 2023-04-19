@@ -190,7 +190,7 @@ app.post('/profile/delete', (req, res, next) => {
     // Delete the user from the database
     const stmt1 = db.prepare(`DELETE FROM users WHERE username='${req.app.get('username')}'`);
     let deletion = stmt1.run();
-
+    alert(req.app.get('username') + "'s account has been deleted. We're sorry to see you go!")
     // Redirect to the entry page
     res.redirect('/');
 });
