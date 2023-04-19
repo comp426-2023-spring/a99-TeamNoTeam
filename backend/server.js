@@ -178,7 +178,7 @@ app.post('/profile', (req, res, next) => {
     req.app.set('username', found_new_user['username']);
     req.app.set('password', found_new_user['password']);
     req.app.set('email', found_new_user['email']);
-
+    alert('Account has been updated!')
     // Refresh the profile page
     res.redirect('/profile');
 });
