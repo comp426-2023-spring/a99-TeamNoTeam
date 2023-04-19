@@ -82,6 +82,7 @@ app.post('/user/new/', (req, res, next) => {
         const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
         db.exec(stmt)
         console.log(userdata.name + " created user " + userdata.username);
+        alert(userdata.username + ' is now registered!')
         res.render("index");
 
     } else {
