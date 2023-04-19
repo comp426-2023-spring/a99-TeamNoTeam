@@ -9,6 +9,7 @@ import {default as path} from 'path';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import fs from 'fs';
+import alert from 'alert-node';
 
 const upload = multer({ dest: 'public/images/'})
 
@@ -81,12 +82,12 @@ app.post('/user/new/', (req, res, next) => {
         const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
         db.exec(stmt)
         console.log(userdata.name + " created user " + userdata.username);
+        alert(userdata.username + ' is now registered!')
         res.render("index");
 
     } else {
-        // If the user is already in the database and cannot be created
-        // TODO: Fill in what is rendered in this case
-        // res.render();
+        alert('Username already taken. Please try again.')
+        res.redirect('/signup')
     }
 });
 
@@ -105,9 +106,9 @@ app.post('/login', (req, res, next) => {
     const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
 
-    // If the username is not in the database (invalid login), refresh login page
-    // TODO: should we make a separate view for after a bad login, or just refresh the login?
+    // If the username is not in the database (invalid login), refresh login page and present error message
     if (found_user === undefined) {
+        alert('Incorrect username, please try again.')
         res.redirect('/login');
     // If login was valid, navigate to reviews page
     } else { 
@@ -162,7 +163,7 @@ app.post('/profile', (req, res, next) => {
             let updated_user = stmt1.run();
         } else {
             // If requested username is in the database and the id does NOT match, do not allow the user to change their username (it's taken)
-            // TODO: communicate to the user what happened instead of just refreshing
+            alert('Username is taken. Please try again.')
             res.redirect('/profile');
             return; // Stop here in this case
         } 
@@ -177,7 +178,7 @@ app.post('/profile', (req, res, next) => {
     req.app.set('username', found_new_user['username']);
     req.app.set('password', found_new_user['password']);
     req.app.set('email', found_new_user['email']);
-
+    alert('Account has been updated!')
     // Refresh the profile page
     res.redirect('/profile');
 });
@@ -189,7 +190,7 @@ app.post('/profile/delete', (req, res, next) => {
     // Delete the user from the database
     const stmt1 = db.prepare(`DELETE FROM users WHERE username='${req.app.get('username')}'`);
     let deletion = stmt1.run();
-
+    alert(req.app.get('username') + "'s account has been deleted. We're sorry to see you go!")
     // Redirect to the entry page
     res.redirect('/');
 });
