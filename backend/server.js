@@ -85,9 +85,8 @@ app.post('/user/new/', (req, res, next) => {
         res.render("index");
 
     } else {
-        // If the user is already in the database and cannot be created
-        // TODO: Fill in what is rendered in this case
-        // res.render();
+        alert('Username already taken. Please try again.')
+        res.redirect('/signup')
     }
 });
 
