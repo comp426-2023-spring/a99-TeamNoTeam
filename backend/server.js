@@ -163,7 +163,7 @@ app.post('/profile', (req, res, next) => {
             let updated_user = stmt1.run();
         } else {
             // If requested username is in the database and the id does NOT match, do not allow the user to change their username (it's taken)
-            // TODO: communicate to the user what happened instead of just refreshing
+            alert('Username is taken. Please try again.')
             res.redirect('/profile');
             return; // Stop here in this case
         } 
