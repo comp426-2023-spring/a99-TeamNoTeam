@@ -9,6 +9,7 @@ import {default as path} from 'path';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import fs from 'fs';
+import alert from 'alert-node';
 
 const upload = multer({ dest: 'public/images/'})
 
@@ -105,9 +106,9 @@ app.post('/login', (req, res, next) => {
     const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
 
-    // If the username is not in the database (invalid login), refresh login page
-    // TODO: should we make a separate view for after a bad login, or just refresh the login?
+    // If the username is not in the database (invalid login), refresh login page and present error message
     if (found_user === undefined) {
+        alert('Incorrect username, please try again.')
         res.redirect('/login');
     // If login was valid, navigate to reviews page
     } else { 

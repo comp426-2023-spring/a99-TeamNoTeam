@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/comp426-2023-spring/a99-TeamNoTeam#readme",
   "dependencies": {
+    "alert-node": "^5.0.3",
     "better-sqlite3": "^8.2.0",
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
