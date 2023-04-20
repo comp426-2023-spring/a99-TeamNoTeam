@@ -239,7 +239,8 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     // access the username who posted it to display?
 
     // Insert new review into database
-    const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
+    try {
+        const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
         VALUES ('${review.uid}', '${review.title}', 
         '${review.desc}', '${review.rating}',
         '${review.photo}', '${review.created}');`;
@@ -249,6 +250,10 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     // Refresh the reviews page
     // res.render("home");
     res.redirect('/home')
+    } catch {
+        alert("Oops! Something went wrong... Please don't use this special character: '   ")
+        res.redirect('/post')
+    }
 
 
 });
