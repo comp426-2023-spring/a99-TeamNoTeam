@@ -267,7 +267,7 @@ app.get('/test', (req, res, next) => {
 app.get('/home', (req, res, next) => {
 
     // Select all reviews from the database
-    const stmt = db.prepare(`SELECT * FROM reviews;`);
+    const stmt = db.prepare(`SELECT * FROM reviews ORDER BY created DESC;`);
     let reviews = stmt.all();
 
     if(reviews === undefined) {
