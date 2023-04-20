@@ -49,11 +49,6 @@ app.get('/signup', (req, res, next) => {
     res.render("signup");
 });
 
-// Endpoint shows the home page
-app.get('/home', (req, res, next) => {
-    res.render("home");
-});
-
 // Endpoint shows the create review page
 app.get('/post', (req, res, next) => {
     res.render("post-review");
@@ -244,7 +239,8 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     // access the username who posted it to display?
 
     // Insert new review into database
-    const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
+    try {
+        const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
         VALUES ('${review.uid}', '${review.title}', 
         '${review.desc}', '${review.rating}',
         '${review.photo}', '${review.created}');`;
@@ -252,7 +248,13 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     console.log(req.app.get('name') + " created review " + review.title);
 
     // Refresh the reviews page
-    res.render("home");
+    // res.render("home");
+    res.redirect('/home')
+    } catch {
+        // quick fix for sql error (it doesn't like this: ' )
+        alert("Oops! Something went wrong... Please don't use this special character: '   ")
+        res.redirect('/post')
+    }
 
 
 });
@@ -271,13 +273,14 @@ app.get('/test', (req, res, next) => {
 app.get('/home', (req, res, next) => {
 
     // Select all reviews from the database
-    const stmt = db.prepare(`SELECT * FROM reviews;`);
+    const stmt = db.prepare(`SELECT * FROM reviews ORDER BY created DESC;`);
     let reviews = stmt.all();
 
     if(reviews === undefined) {
-        return; // do nothing
+        // return; // do nothing
+        res.render('home')
     } else {
-        res.send(reviews);
+        res.render('home', {reviews: reviews});
     }
 });
 

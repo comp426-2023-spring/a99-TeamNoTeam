@@ -33,32 +33,21 @@
 </div>
 
 <div class="reviews-page-container">
-    <div style="margin-top:10px;" class="review-box">
-        <img class="review-image" src="images/cds_sushi.jpg">
-        <div class="review-description">
-            <h5 style="margin-bottom: 15px;">Chase has good sushi!</h5>
-            <div class="review-rating">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
+    <% for(var i=0; i < reviews.length; i++) { %>
+        <div style="margin-bottom: 10px;" class="review-box">
+            <img class="review-image"src="<%= reviews[i].photo %>">
+            <div class="review-description">
+                <h5 style="margin-bottom: 15px;"><%= reviews[i].title %></h5>
+                <div class="review-rating">
+                    <% for(var j=0; j < reviews[i].rating; j++) { %>
+                        <span class="fa fa-star checked"></span>
+                    <% } %>
+                    <% for(var k=0; k < 5 - reviews[i].rating; k++) { %>
+                        <span class="fa fa-star unchecked"></span>
+                    <% } %>
+                </div>
+                <h4><%= reviews[i].description %></h4>
             </div>
-            <h4>I was skeptical at first of eating raw fish at a dining hall -- but it was actually pretty good! It’s no Spicy 9 or Kurama, but I hope sushi becomes a staple at dinner, and maybe even at late night!</h4>
         </div>
-    </div>
-    <div style="margin-bottom: 10px;" class="review-box">
-        <img class="review-image" src="images/cds_waffle.jpg">
-        <div class="review-description">
-            <h5 style="margin-bottom: 15px;">Unpopular Opinion: I don't Like Waffles</h5>
-            <div class="review-rating">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
-                <span class="fa fa-star unchecked"></span>
-            </div>
-            <h4>I don't like waffles but I decided to get them anyways. They were not good. I don't recommend to anyone who does like waffles. </h4>
-        </div>
-    </div>
-</div>
+    <% } %>
+ </div> 
