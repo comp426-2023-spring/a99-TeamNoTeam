@@ -251,6 +251,7 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     // res.render("home");
     res.redirect('/home')
     } catch {
+        // quick fix for sql error (it doesn't like this: ' )
         alert("Oops! Something went wrong... Please don't use this special character: '   ")
         res.redirect('/post')
     }
