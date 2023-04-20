@@ -49,11 +49,6 @@ app.get('/signup', (req, res, next) => {
     res.render("signup");
 });
 
-// Endpoint shows the home page
-app.get('/home', (req, res, next) => {
-    res.render("home");
-});
-
 // Endpoint shows the create review page
 app.get('/post', (req, res, next) => {
     res.render("post-review");
@@ -252,7 +247,8 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     console.log(req.app.get('name') + " created review " + review.title);
 
     // Refresh the reviews page
-    res.render("home");
+    // res.render("home");
+    res.redirect('/home')
 
 
 });
@@ -275,9 +271,10 @@ app.get('/home', (req, res, next) => {
     let reviews = stmt.all();
 
     if(reviews === undefined) {
-        return; // do nothing
+        // return; // do nothing
+        res.render('home')
     } else {
-        res.send(reviews);
+        res.render('home', {reviews: reviews});
     }
 });
 
