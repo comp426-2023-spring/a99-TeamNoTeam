@@ -260,15 +260,6 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
 });
 
 
-// Endpoint was used to test the image upload system
-// Can be deleted later
-app.get('/test', (req, res, next) => {
-    const stmt = db.prepare(`SELECT photo FROM reviews;`);
-    let response = stmt.get()
-    res.render('image', {image: response.photo})
-});
-
-
 // Endpoint gets all reviews from the database
 app.get('/home', (req, res, next) => {
 
@@ -276,9 +267,8 @@ app.get('/home', (req, res, next) => {
     const stmt = db.prepare(`SELECT * FROM reviews ORDER BY created DESC;`);
     let reviews = stmt.all();
 
-    if(reviews === undefined) {
-        // return; // do nothing
-        res.render('home')
+    if (reviews === undefined) {
+        res.render('home');
     } else {
         res.render('home', {reviews: reviews});
     }
@@ -289,12 +279,13 @@ app.get('/home', (req, res, next) => {
 app.get('/profile/reviews', (req, res, next) => {
 
     // Select all reviews from the database made by the current user (through the uid column)
-    const stmt = db.prepare(`SELECT * FROM reviews WHERE uid='${req.app.get('id')}'`);
+    const stmt = db.prepare(`SELECT * FROM reviews WHERE uid='${req.app.get('id')}' ORDER BY created DESC;`);
     let reviews = stmt.all();
 
-    if(reviews === undefined) {
-        return; // do nothing
+    // Will we render profile here? or will the my reviews page be a separate ejs file?
+    if (reviews === undefined) {
+        res.render('profile');
     } else {
-        res.send(reviews);
+        res.render('profile', {reviews: reviews});
     }
 });
