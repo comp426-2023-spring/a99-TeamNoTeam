@@ -41,6 +41,6 @@ On HeelMeals, users can create an account and log in to see other students’ re
 
 For more documentation, see the following pages:
 - [API Endpoints](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/api_endpoints.md): info about all our API endpoints, with links to the code for each route
-- [Database](insert link here once it's merged): info about the structure of our users, reviews, and logs database tables
+- [Database](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/main/docs/database.md): info about the structure of our users, reviews, and logs database tables
 - [Roles](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/roles.md): info about the roles each of the team members performed
 - [Meeting Notes](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/meeting_notes.md): notes from each of our team meetings 
