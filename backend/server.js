@@ -93,12 +93,12 @@ app.post('/login', (req, res, next) => {
     // Commented out lines that refer to a password for now, but we can add it back later if we add password functionality
     let userdata = {
 		username: req.body.username,
-		// password: req.body.password
+		password: req.body.password
 	}
 
     // See if username and corresponding password are in the database
-    // const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}' and password='${userdata.password}'`);
-    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
+    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}' and password='${userdata.password}'`);
+    //const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
 
     // If the username is not in the database (invalid login), refresh login page and present error message
