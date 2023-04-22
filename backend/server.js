@@ -71,18 +71,21 @@ app.post('/user/new/', (req, res, next) => {
     // See if username is already in the database
     const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
+    try {
+        // If the username is not already in the database, insert it
+        if (found_user === undefined) {
+            const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
+            db.exec(stmt)
+            console.log(userdata.name + " created user " + userdata.username);
+            alert(userdata.username + ' is now registered!')
+            res.render("index");
 
-    // If the username is not already in the database, insert it
-    if (found_user === undefined) {
-        const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
-        db.exec(stmt)
-        console.log(userdata.name + " created user " + userdata.username);
-        alert(userdata.username + ' is now registered!')
-        res.render("index");
-
-    } else {
-        alert('Username already taken. Please try again.')
-        res.redirect('/signup')
+        } else {
+            alert('Username already taken. Please try again.')
+            res.redirect('/signup')
+        }
+    } catch {
+        alert('Email is already registered under another account.')
     }
 });
 
