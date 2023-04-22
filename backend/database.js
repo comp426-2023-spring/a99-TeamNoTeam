@@ -38,7 +38,7 @@ if (row2 == undefined) {
             created DATE,
             location VARCHAR,
             meal VARCHAR,
-            FOREIGN KEY(uid) REFERENCES users(id)
+            FOREIGN KEY(uid) REFERENCES users(id) ON DELETE CASCADE
         );
     `
     db.exec(sqlInit)
