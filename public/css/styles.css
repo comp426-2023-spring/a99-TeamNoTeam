@@ -273,6 +273,9 @@ body {
     height: 380px;
     background-color: white;
     border-radius: 16px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
 }
 
 .required:after {
@@ -325,4 +328,7 @@ input[type='radio'] {
     justify-content: center;
     background-color: white;
     border-radius: 16px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
 }
