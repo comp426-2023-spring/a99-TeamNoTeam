@@ -209,6 +209,8 @@ app.get('/profile/logout', (req, res, next) => {
 app.post('/home', upload.single('photo'), (req, res, next) => {
     // gets the time the review was posted
     const time_posted = new Date();
+    const isoDate = time_posted.toISOString(); // converts date object to ISO format for SQL
+    console.log(isoDate)
     // gets the path to the image buffer that was saved in /images folder
     let path = req.file.path;
 
@@ -230,33 +232,23 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
 		desc: req.body.description,
 		rating: req.body.rating,
         photo: path,
-        created: time_posted
+        created: isoDate
 	}
-    // Question: do I need to do anything with a foreign key here?
-    // not exactly sure how the reviews and users link 
-
-    // Another question: should we add a username field to the reviews db so we can 
-    // access the username who posted it to display?
-
     // Insert new review into database
     try {
-        const stmt = `INSERT INTO reviews (uid, title, description, rating, photo, created) 
-        VALUES ('${review.uid}', '${review.title}', 
-        '${review.desc}', '${review.rating}',
-        '${review.photo}', '${review.created}');`;
-    db.exec(stmt)
-    console.log(req.app.get('name') + " created review " + review.title);
+        const stmt = db.prepare(`INSERT INTO reviews (uid, title, description, rating, photo, created) 
+        VALUES (?, ?, ?, ?, ?, ?);`)
+        stmt.run(review.uid, review.title, review.desc, review.rating, review.photo, review.created)
+        console.log(req.app.get('name') + " created review " + review.title);
 
-    // Refresh the reviews page
-    // res.render("home");
-    res.redirect('/home')
+        // Refresh the reviews page
+        // res.render("home");
+        res.redirect('/home')
     } catch {
         // quick fix for sql error (it doesn't like this: ' )
-        alert("Oops! Something went wrong... Please don't use this special character: '   ")
+        alert("Oops! Something went wrong...")
         res.redirect('/post')
     }
-
-
 });
 
 
@@ -264,7 +256,10 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
 app.get('/home', (req, res, next) => {
 
     // Select all reviews from the database
-    const stmt = db.prepare(`SELECT * FROM reviews ORDER BY created DESC;`);
+    const stmt = db.prepare(`SELECT reviews.*, users.username 
+    FROM reviews, users 
+    WHERE reviews.uid=users.id
+    ORDER BY created DESC;`);
     let reviews = stmt.all();
 
     if (reviews === undefined) {
