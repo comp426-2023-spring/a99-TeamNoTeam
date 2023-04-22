@@ -1,0 +1,66 @@
+<!--- User Reviews page for HeelMeals
+    TODO: 
+    - display a user's reviews
+ -->
+ <link href="/css/styles.css" rel="stylesheet" type="text/css">
+ <a href="/">
+    <div class="title">
+        <span class="material-symbols-outlined" style="color:white">
+            lunch_dining
+            </span>
+        <h1 style="margin-left: 5px; margin-top: 0px">HeelMeals</h1>
+    </div>
+</a>
+
+<div class="profile-actions-container">
+    <div>
+        <a href="/home">
+            <button class="profile-button"> 
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <span style="position: relative; top: 12px;left: 4px;">Home</span>
+                    <span class="material-symbols-outlined">home</span>
+                </div>
+            </button>
+        </a>
+    </div>
+    <div>
+        <a href="/profile">
+            <button class="profile-button"> 
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <span style="position: relative; top: 12px;left: 4px;">Account Details</span>
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+            </button>
+        </a>
+    </div>
+    <div>
+        <a href="/profile">
+            <button class="profile-button"> 
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <span style="position: relative; top: 12px;left: 4px;">Your Reviews</span>
+                    <span class="material-symbols-outlined">rate_review</span>
+                </div>
+            </button>
+        </a>
+    </div>
+    <div>
+        <a href="/">
+            <button class="profile-button"> 
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <span style="position: relative; top: 12px;left: 4px;">Log Out</span>
+                    <span class="material-symbols-outlined">logout</span>
+                </div>
+            </button>
+        </a>
+    </div>
+    <div>
+        <form action="/profile/delete" method="POST">
+            <button class="profile-button" id="deleteButton"> 
+                <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
+                    <span class="material-symbols-outlined">delete</span>
+                </div>
+            </button>
+        </form>   
+    </div>
+</div> 
