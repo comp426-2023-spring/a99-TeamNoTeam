@@ -318,3 +318,13 @@ input[type='radio'] {
 input[type='file']{
     color:white;
   }
+
+/* User Reviews Page*/
+.user-reviews-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    justify-content: center;
+    background-color: white;
+    border-radius: 16px;
+}
