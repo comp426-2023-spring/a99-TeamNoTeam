@@ -315,15 +315,12 @@ input[type='radio'] {
     width: 15px;
 }
 
-input[type='file']{
-    color:white;
-  }
-
 /* User Reviews Page*/
 .user-reviews-page-container {
     display: flex;
     flex-direction: column;
     width: 700px;
+    height: auto;
     justify-content: center;
     background-color: white;
     border-radius: 16px;
