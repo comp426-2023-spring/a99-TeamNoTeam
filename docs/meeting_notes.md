@@ -45,3 +45,15 @@ created an issue on GitHub for help
     - Start working on stories 4 and 5
         - Bailey: Link basic wip pages for the create review and reviews page
         - Sadie: Write routes, update meeting + endpoints documentation
+        - Cath: Updating profile view, adding post view
+
+
+# Meeting #5: Thurs, April 20th
+- Discussed some edge cases to work on fixing
+- Assessed what is left to do for the whole project
+- Set a deadline for when we want to finish: we'll tentatively record the demo on Thurs, April 27th
+- Delegated tasks for the next week:
+    - All: add our tasks to project board as issues
+        - Sadie: update documentation, add README stuff; edit “my reviews” route to match ‘/home’ route
+        - Cath: update “your reviews” page, add user names to reviews, fix gradient with lots of reviews, make images required, make “no file chosen” back to black font, fix white space problem, password frontend (login, signup, (input=password)), make sure routes have /app/ in front, add comments to front end 
+        - Bailey: add interactions to logs database; fix bug where a user cannot update only username or name; look at the apostrophe bug; what is npm run supposed to do ; password backend; add username info to reviews routes; add database info to our docs? 
