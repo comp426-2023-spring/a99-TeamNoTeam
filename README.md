@@ -2,9 +2,16 @@
 
 ## Overview
 
-HeelMeals is a dining hall meal review website for UNC students. (More will be added here)
+Food is important to college students. That’s why we decided to create a dining hall meal review website for students at UNC.
+
+Sometimes, the name of a dining hall dish isn’t enough to decide whether to indulge in it. Reading the opinions of peers, and seeing the meal itself, will help students determine their future fare.
+
+On HeelMeals, users can create an account and log in to see other students’ reviews. They can post their own reviews, which include a title, description, star rating and photo. And once they move on from their dining hall days, users can delete their account.
+
 
 ## Demo Video
+
+[Link](insert link)
 	
 
 ## Installation + Run Instructions
