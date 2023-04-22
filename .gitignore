@@ -102,6 +102,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# Igore DB file 
-database.db
