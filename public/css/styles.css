@@ -250,9 +250,7 @@ body {
     height: auto;
     margin: auto;
     justify-content: space-around;
-    position: absolute;
-    top: 20%;
-    left: 17%;
+
 }
 
 .profile-actions-container {
@@ -260,6 +258,9 @@ body {
     flex-direction: column;
     margin-top: -25px;
     justify-content: flex-start;
+    position: absolute;
+    top: 20%;
+    left: 17%;
 }
 
 .edit-account-box {
