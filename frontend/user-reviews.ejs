@@ -1,0 +1,88 @@
+<!--- User Reviews page for HeelMeals
+    TODO: 
+    - display a user's reviews
+ -->
+ <link href="/css/styles.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <a href="/home">
+    <div class="title">
+        <span class="material-symbols-outlined" style="color:white">
+            lunch_dining
+            </span>
+        <h1 style="margin-left: 5px; margin-top: 0px">HeelMeals</h1>
+    </div>
+</a>
+
+<div class="profile-container">
+    <div class="profile-actions-container">
+        <div>
+            <a href="/home">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Home</span>
+                        <span class="material-symbols-outlined">home</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/profile">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Account Details</span>
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/profile">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Your Reviews</span>
+                        <span class="material-symbols-outlined">rate_review</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <a href="/">
+                <button class="profile-button"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Log Out</span>
+                        <span class="material-symbols-outlined">logout</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+        <div>
+            <form action="/profile/delete" method="POST">
+                <button class="profile-button" id="deleteButton"> 
+                    <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                        <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
+                        <span class="material-symbols-outlined">delete</span>
+                    </div>
+                </button>
+            </form>   
+        </div>
+    </div> 
+    <div class="user-reviews-page-container">
+        <% for(var i=0; i < reviews.length; i++) { %>
+            <div style="margin-bottom: 10px;" class="review-box">
+                <img class="review-image"src="<%= reviews[i].photo %>">
+                <div class="review-description">
+                    <h5 style="margin-bottom: 15px;"><%= reviews[i].title %></h5>
+                    <div class="review-rating">
+                        <% for(var j=0; j < reviews[i].rating; j++) { %>
+                            <span class="fa fa-star checked"></span>
+                        <% } %>
+                        <% for(var k=0; k < 5 - reviews[i].rating; k++) { %>
+                            <span class="fa fa-star unchecked"></span>
+                        <% } %>
+                    </div>
+                    <h4><%= reviews[i].description %></h4>
+                </div>
+            </div>
+        <% } %>
+     </div> 
+</div>
