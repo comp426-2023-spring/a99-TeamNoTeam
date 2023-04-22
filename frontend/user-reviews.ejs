@@ -1,9 +1,10 @@
-<!--- Profile page for HeelMeals
-    TODO (for stories 1 & 2): 
-    - add profile button
+<!--- User Reviews page for HeelMeals
+    TODO: 
+    - display a user's reviews
  -->
  <link href="/css/styles.css" rel="stylesheet" type="text/css">
- <a href="/">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <a href="/home">
     <div class="title">
         <span class="material-symbols-outlined" style="color:white">
             lunch_dining
@@ -64,36 +65,24 @@
                 </button>
             </form>   
         </div>
-    </div>   
-    <form action="/profile" method="POST">
-        <div class="edit-account-box">
-          <h2 style="margin-bottom: -10px">User Details</h2>
-          <div class="text-input">
-            <div style="margin-bottom: -13px;">
-              <h4 style="font-weight: 400;"> <span style="color: black">Name</span></h4>
+    </div> 
+    <div class="user-reviews-page-container">
+        <% for(var i=0; i < reviews.length; i++) { %>
+            <div style="margin-bottom: 10px;" class="review-box">
+                <img class="review-image"src="<%= reviews[i].photo %>">
+                <div class="review-description">
+                    <h5 style="margin-bottom: 15px;"><%= reviews[i].title %></h5>
+                    <div class="review-rating">
+                        <% for(var j=0; j < reviews[i].rating; j++) { %>
+                            <span class="fa fa-star checked"></span>
+                        <% } %>
+                        <% for(var k=0; k < 5 - reviews[i].rating; k++) { %>
+                            <span class="fa fa-star unchecked"></span>
+                        <% } %>
+                    </div>
+                    <h4><%= reviews[i].description %></h4>
+                </div>
             </div>
-              <input class="text-input-box" type="text" name="name" placeholder="<%- name -%>"">
-          </div>
-          <div class="text-input">
-            <div style="margin-bottom: -13px;">
-              <h4 style="font-weight: 400;"> <span style="color: black">Username</span></h4>
-            </div>
-              <input class="text-input-box" type="text" name="username" placeholder="<%- username -%>">
-          </div>
-          <div class="text-input">
-            <div style="margin-bottom: -13px;">
-              <h4 style="font-weight: 400;"> <span style="color: black">Password</span></h4>
-            </div>
-              <input class="text-input-box" type="text" name="password" placeholder="<%- password -%>">
-          </div>
-          <div class="text-input">
-            <div style="margin-bottom: -13px;">
-              <h4 class="required" style="font-weight: 400;"> <span style="color: black">Email</span> (Cannot be Changed) </h4>
-            </div>
-              <input class="text-input-box" type="text" name="email" placeholder="<%- email -%>" disabled>
-          </div>
-          <button type="submit" class="login-button" style="margin-bottom: 20px">Update Account</button>
-        </div>
-    </form>
+        <% } %>
+     </div> 
 </div>
-
