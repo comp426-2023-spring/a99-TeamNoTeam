@@ -227,6 +227,16 @@ body {
     background-color: #e7e7e7;
 }
 
+.home-actions-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: -25px;
+    justify-content: flex-start;
+    position: absolute;
+    top: 20%;
+    right: 17%;
+}
+
 /*  Account Details page */
 .signup-box {
     display: flex;
