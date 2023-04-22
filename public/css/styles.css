@@ -235,6 +235,16 @@ body {
     background-color: #e7e7e7;
 }
 
+.home-actions-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: -25px;
+    justify-content: flex-start;
+    position: absolute;
+    top: 20%;
+    right: 17%;
+}
+
 /*  Account Details page */
 
 
@@ -246,9 +256,7 @@ body {
     height: auto;
     margin: auto;
     justify-content: space-around;
-    position: absolute;
-    top: 20%;
-    left: 17%;
+
 }
 
 .profile-actions-container {
@@ -256,6 +264,9 @@ body {
     flex-direction: column;
     margin-top: -25px;
     justify-content: flex-start;
+    position: absolute;
+    top: 20%;
+    left: 17%;
 }
 
 .edit-account-box {
@@ -268,6 +279,9 @@ body {
     height: 420px;
     background-color: white;
     border-radius: 16px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
 }
 
 .required:after {
@@ -311,6 +325,16 @@ input[type='radio'] {
     width: 15px;
 }
 
-input[type='file']{
-    color:white;
-  }
+/* User Reviews Page*/
+.user-reviews-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: auto;
+    justify-content: center;
+    background-color: white;
+    border-radius: 16px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+}

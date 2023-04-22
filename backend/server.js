@@ -271,16 +271,15 @@ app.get('/home', (req, res, next) => {
 
 
 // Endpoint gets all reviews posted by the current user
-app.get('/profile/reviews', (req, res, next) => {
+app.get('/user-reviews/reviews', (req, res, next) => {
 
     // Select all reviews from the database made by the current user (through the uid column)
     const stmt = db.prepare(`SELECT * FROM reviews WHERE uid='${req.app.get('id')}' ORDER BY created DESC;`);
     let reviews = stmt.all();
 
-    // Will we render profile here? or will the my reviews page be a separate ejs file?
-    if (reviews === undefined) {
-        res.render('profile');
+    if(reviews === undefined) {
+        res.render('user-reviews')
     } else {
-        res.render('profile', {reviews: reviews});
+        res.render('user-reviews', {reviews: reviews})
     }
 });
