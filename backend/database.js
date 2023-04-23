@@ -48,8 +48,8 @@ const stmt3 = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and 
 if (row === undefined) {
     // the following was found here: https://github.com/comp426-2022-fall/schedule/blob/main/17-database.md#notes
     const sqlInit = `
-        CREATE TABLE accesslog ( 
-            id INTEGER PRIMARY KEY, 
+        CREATE TABLE logs ( 
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
             remote_addr VARCHAR, 
             remote_user VARCHAR, 
             date VARCHAR, 

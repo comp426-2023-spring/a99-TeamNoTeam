@@ -10,6 +10,7 @@ import bodyParser from 'body-parser';
 import multer from 'multer';
 import fs from 'fs';
 import alert from 'alert-node';
+import morgan from 'morgan';
 
 const upload = multer({ dest: 'public/images/'})
 
@@ -26,6 +27,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+/* Use morgan to log each api call and add each log to an access log file,
+as well as add each log to our logs table in the database
+*/
+const accesslog = fs.createWriteStream('./access.log', {flags: 'a'})
+app.use(morgan('combined', { stream: accesslog }));
+
 const args = minimist(process.argv.slice(2));
 // if no port argument is passed in, use 3000 as the default
 const port = args.port || 3000
@@ -33,6 +40,29 @@ const port = args.port || 3000
 app.listen(port, () => {
     console.log("Server listening on port " + port)
 });
+
+/* gets information to enter into log database
+ this will run each time one of our routes is called 
+ resources for this part (from previous COMP426 semester): https://github.com/comp426-2022-fall/schedule/blob/main/16-logs.md#notes,
+ https://uncch.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a0fa1748-080d-4546-bdc3-af3b00e2da90 
+ */
+app.use((req, res, next) => {
+	let logdata = {
+		remote_addr: req.ip,
+		remote_user: req.remote_user,
+		datetime: new Date().toISOString(),
+		method: req.method,
+		url: req.originalUrl,
+		http_version: req.httpVersion,
+		status: res.statusCode,
+		content_length: req.content_length,
+		referer_url: req.get('referer'),
+		user_agent: req.get('user-agent')
+	}
+	const statement = db.prepare('INSERT INTO logs (remote_addr, remote_user, date, method, url, http_version, status, content_length, referer_url, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+	const info = statement.run(logdata.remote_addr, logdata.remote_user, logdata.datetime, logdata.method, logdata.url, logdata.http_version, logdata.status, logdata.content_length, logdata.referer_url, logdata.user_agent);
+	next();
+})
 
 // Endpoint shows the entry page
 app.get('/', (req, res, next) => {
@@ -252,7 +282,6 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
     // gets the time the review was posted
     const time_posted = new Date();
     const isoDate = time_posted.toISOString(); // converts date object to ISO format for SQL
-    console.log(isoDate)
     // gets the path to the image buffer that was saved in /images folder
     let path = req.file.path;
 
