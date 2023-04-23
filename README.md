@@ -32,6 +32,7 @@ On HeelMeals, users can create an account and log in to see other students’ re
 - express: ^4.18.2
 - multer: ^1.4.5-lts.1
 - nodemon: ^2.0.22
+- morgan: ^1.10.0
 
 
 ## Future Additions
