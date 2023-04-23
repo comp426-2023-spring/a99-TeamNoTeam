@@ -123,7 +123,6 @@ app.post('/user/new/', (req, res, next) => {
 // Endpoint allows a registered user to login and access the reviews page
 app.post('/login', (req, res, next) => {
     // Consolidate data from request
-    // Commented out lines that refer to a password for now, but we can add it back later if we add password functionality
     let userdata = {
 		username: req.body.username,
 		password: req.body.password
@@ -316,7 +315,6 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
         // res.render("home");
         res.redirect('/home')
     } catch {
-        // quick fix for sql error (it doesn't like this: ' )
         alert("Oops! Something went wrong...")
         res.redirect('/post')
     }
