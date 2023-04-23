@@ -71,18 +71,21 @@ app.post('/user/new/', (req, res, next) => {
     // See if username is already in the database
     const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${userdata.username}'`);
     let found_user = stmt1.get();
+    try {
+        // If the username is not already in the database, insert it
+        if (found_user === undefined) {
+            const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
+            db.exec(stmt)
+            console.log(userdata.name + " created user " + userdata.username);
+            alert(userdata.username + ' is now registered!')
+            res.render("index");
 
-    // If the username is not already in the database, insert it
-    if (found_user === undefined) {
-        const stmt = `INSERT INTO users (name, username, password, email) VALUES ('${userdata.name}', '${userdata.username}', '${userdata.password}', '${userdata.email}');`;
-        db.exec(stmt)
-        console.log(userdata.name + " created user " + userdata.username);
-        alert(userdata.username + ' is now registered!')
-        res.render("index");
-
-    } else {
-        alert('Username already taken. Please try again.')
-        res.redirect('/signup')
+        } else {
+            alert('Username already taken. Please try again.')
+            res.redirect('/signup')
+        }
+    } catch {
+        alert('Email is already registered under another account.')
     }
 });
 
@@ -137,36 +140,68 @@ app.post('/profile', (req, res, next) => {
     let update = {
         name: req.body.name,
 		username: req.body.username,
-		// password: req.body.password,
-		// email: req.body.email,
+		password: req.body.password,
 	}
 
-    // ------ Update user info based on the given username --------
-
-    // See if requested username is already in the database
-    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${update.username}'`);
-    let found_user = stmt1.get();
-
-    // If the username is not already in the database, update the current user
-    if (found_user === undefined) { 
-        const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', username='${update.username}' WHERE id='${req.app.get('id')}'`);
-        let updated_user = stmt1.run();
-    } else {
-        // If requested username is in the database and the id in that row matches the current row, do the update (in case where username isn't being changed)
-        if (found_user['id'] === req.app.get('id')) {
-            const stmt1 = db.prepare(`UPDATE users SET name='${update.name}', username='${update.username}' WHERE id='${req.app.get('id')}'`);
-            let updated_user = stmt1.run();
-        } else {
-            // If requested username is in the database and the id does NOT match, do not allow the user to change their username (it's taken)
+    if (update.name == "" && (update.username != "" || update.password != "")) {
+        if (update.username == "" && update.password != "") {
+            // name and username are not being changed, only update password
+            const stmt = db.prepare(`UPDATE users SET password='${update.password}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        } else if (update.username != "" && update.password == "") {
+            // name and password are not being changed, only update username
+            if (!validUsername(update.username)) {
+                alert('Username is taken. Please try again.')
+                res.redirect('/profile')
+                return
+            }
+            const stmt = db.prepare(`UPDATE users SET username='${update.username}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        } else if (update.username != "" && update.password != "") {
+            // name is not being changed, update username and password
+            if (!validUsername(update.username)) {
+                alert('Username is taken. Please try again.')
+                res.redirect('/profile')
+                return
+            }
+            const stmt = db.prepare(`UPDATE users SET username='${update.username}', password='${update.password}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        }
+    } else if (update.password == "" && (update.username != "" || update.name != "")) {
+        if (update.username == "" && update.name != "") {
+            // password and username are not being changed, only update name
+            const stmt = db.prepare(`UPDATE users SET name='${update.name}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        } else if (update.username != "" && update.name != "") {
+            // password is not being changed, update username and name
+            if (!validUsername(update.username)) {
+                alert('Username is taken. Please try again.')
+                res.redirect('/profile')
+                return
+            }
+            const stmt = db.prepare(`UPDATE users SET username='${update.username}', name='${update.name}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        }
+    } else if (update.username == "" && (update.password != "" || update.name != "")) {
+        if (update.password != "" && update.name != "") {
+            // username is not being changed, update password and name
+            const stmt = db.prepare(`UPDATE users SET password='${update.password}', name='${update.name}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
+        }
+    } else if (update.username != "" && update.name != "" && update.password != null) {
+        // update username, name, and password
+        if (!validUsername(update.username)) {
             alert('Username is taken. Please try again.')
-            res.redirect('/profile');
-            return; // Stop here in this case
-        } 
+            res.redirect('/profile')
+            return
+        }
+        const stmt = db.prepare(`UPDATE users SET username='${update.username}', password='${update.password}', name='${update.name}' WHERE id='${req.app.get('id')}'`);
+            stmt.run()
     }
 
     // Get the new updated user from the database
     const stmt2 = db.prepare(`SELECT * FROM users WHERE id='${req.app.get('id')}'`);
-    let found_new_user = stmt1.get();
+    let found_new_user = stmt2.get();
 
     // Since the current user has now been updated, we need to reset our settings accordingly
     req.app.set('name', found_new_user['name']);
@@ -177,6 +212,13 @@ app.post('/profile', (req, res, next) => {
     // Refresh the profile page
     res.redirect('/profile');
 });
+
+function validUsername(name) {
+    // returns true if the username is not already in the database
+    const stmt1 = db.prepare(`SELECT * FROM users WHERE username='${name}'`);
+    let found_user = stmt1.get()
+    return found_user === undefined
+}
 
 
 // Endpoint deletes an account
