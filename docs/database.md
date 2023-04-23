@@ -42,6 +42,23 @@ Notes:
 **logs Table**:
 | field | type |
 | --- | ----------- |
+| id | INTEGER PRIMARY KEY AUTOINCREMENT |
+| remote_addr | VARCHAR |
+| remote_user | VARCHAR |
+| date | VARCHAR |
+| method | VARCHAR |
+| url | VARCHAR |
+| http_version | VARCHAR |
+| status | VARCHAR |
+| content_length | VARCHAR |
+| referer_url | VARCHAR |
+| user_agent | VARCHAR |
+
+Notes:
+
+Information on logs was found from the following (from previous COMP426 semester):
+- https://github.com/comp426-2022-fall/schedule/blob/main/16-logs.md#notes 
+- https://uncch.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a0fa1748-080d-4546-bdc3-af3b00e2da90 
 
 
 
