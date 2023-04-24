@@ -70,23 +70,23 @@ app.get('/', (req, res, next) => {
 });
 
 // Endpoint shows the login page
-app.get('/login', (req, res, next) => {
+app.get('/app/login', (req, res, next) => {
     res.render("login");
 });
 
 // Endpoint shows the signup page
-app.get('/signup', (req, res, next) => {
+app.get('/app/signup', (req, res, next) => {
     res.render("signup");
 });
 
 // Endpoint shows the create review page
-app.get('/post', (req, res, next) => {
+app.get('/app/post', (req, res, next) => {
     res.render("post-review");
 
 });
 
 // Endpoint creates user and adds it to the database
-app.post('/user/new/', (req, res, next) => {
+app.post('/app/user/new/', (req, res, next) => {
 	
     // Consolidate data from request
     let userdata = {
@@ -112,7 +112,7 @@ app.post('/user/new/', (req, res, next) => {
 
         } else {
             alert('Username already taken. Please try again.')
-            res.redirect('/signup')
+            res.redirect('/app/signup')
         }
     } catch {
         alert('Email is already registered under another account.')
@@ -121,7 +121,7 @@ app.post('/user/new/', (req, res, next) => {
 
 
 // Endpoint allows a registered user to login and access the reviews page
-app.post('/login', (req, res, next) => {
+app.post('/app/login', (req, res, next) => {
     // Consolidate data from request
     let userdata = {
 		username: req.body.username,
@@ -136,7 +136,7 @@ app.post('/login', (req, res, next) => {
     // If the username is not in the database (invalid login), refresh login page and present error message
     if (found_user === undefined) {
         alert('Incorrect username, please try again.')
-        res.redirect('/login');
+        res.redirect('/app/login');
     // If login was valid, navigate to reviews page
     } else { 
         // Set settings to certain values for displaying login info later
@@ -145,14 +145,14 @@ app.post('/login', (req, res, next) => {
         req.app.set('username', found_user['username']);
         req.app.set('password', found_user['password']);
         req.app.set('email', found_user['email']);
-        res.redirect('/home'); 
+        res.redirect('/app/home'); 
     }
 
 });
 
 
 // Endpoint shows the logged in user's info on the profile page
-app.get('/profile', (req, res, next) => {
+app.get('/app/profile', (req, res, next) => {
     // This sends the needed data to the profile view if we configure that file correctly
     // req.app.get() is able to be used because the login route used req.app.set()
     res.render('profile', {name: req.app.get('name'), 
@@ -163,7 +163,7 @@ app.get('/profile', (req, res, next) => {
 
 
 // Endpoint updates a user's profile information
-app.post('/profile', (req, res, next) => {
+app.post('/app/profile', (req, res, next) => {
     
     // Consolidate data from request
     let update = {
@@ -181,7 +181,7 @@ app.post('/profile', (req, res, next) => {
             // name and password are not being changed, only update username
             if (!validUsername(update.username)) {
                 alert('Username is taken. Please try again.')
-                res.redirect('/profile')
+                res.redirect('/app/profile')
                 return
             }
             const stmt = db.prepare(`UPDATE users SET username='${update.username}' WHERE id='${req.app.get('id')}'`);
@@ -190,7 +190,7 @@ app.post('/profile', (req, res, next) => {
             // name is not being changed, update username and password
             if (!validUsername(update.username)) {
                 alert('Username is taken. Please try again.')
-                res.redirect('/profile')
+                res.redirect('/app/profile')
                 return
             }
             const stmt = db.prepare(`UPDATE users SET username='${update.username}', password='${update.password}' WHERE id='${req.app.get('id')}'`);
@@ -205,7 +205,7 @@ app.post('/profile', (req, res, next) => {
             // password is not being changed, update username and name
             if (!validUsername(update.username)) {
                 alert('Username is taken. Please try again.')
-                res.redirect('/profile')
+                res.redirect('/app/profile')
                 return
             }
             const stmt = db.prepare(`UPDATE users SET username='${update.username}', name='${update.name}' WHERE id='${req.app.get('id')}'`);
@@ -221,7 +221,7 @@ app.post('/profile', (req, res, next) => {
         // update username, name, and password
         if (!validUsername(update.username)) {
             alert('Username is taken. Please try again.')
-            res.redirect('/profile')
+            res.redirect('/app/profile')
             return
         }
         const stmt = db.prepare(`UPDATE users SET username='${update.username}', password='${update.password}', name='${update.name}' WHERE id='${req.app.get('id')}'`);
@@ -239,7 +239,7 @@ app.post('/profile', (req, res, next) => {
     req.app.set('email', found_new_user['email']);
     alert('Account has been updated!')
     // Refresh the profile page
-    res.redirect('/profile');
+    res.redirect('/app/profile');
 });
 
 function validUsername(name) {
@@ -251,7 +251,7 @@ function validUsername(name) {
 
 
 // Endpoint deletes an account
-app.post('/profile/delete', (req, res, next) => {
+app.post('/app/profile/delete', (req, res, next) => {
 
     // Delete the user from the database
     const stmt1 = db.prepare(`DELETE FROM users WHERE username='${req.app.get('username')}'`);
@@ -263,7 +263,7 @@ app.post('/profile/delete', (req, res, next) => {
 
 
 // Endpoint logs out the current user
-app.get('/profile/logout', (req, res, next) => {
+app.get('/app/profile/logout', (req, res, next) => {
 
     // Reset the settings
     req.app.set('id', -1) // dummy id 
@@ -277,7 +277,7 @@ app.get('/profile/logout', (req, res, next) => {
 });
 
 // Endpoint creates a new review and adds it to the database
-app.post('/home', upload.single('photo'), (req, res, next) => {
+app.post('/app/home', upload.single('photo'), (req, res, next) => {
     // gets the time the review was posted
     const time_posted = new Date();
     const isoDate = time_posted.toISOString(); // converts date object to ISO format for SQL
@@ -313,16 +313,16 @@ app.post('/home', upload.single('photo'), (req, res, next) => {
 
         // Refresh the reviews page
         // res.render("home");
-        res.redirect('/home')
+        res.redirect('/app/home')
     } catch {
         alert("Oops! Something went wrong...")
-        res.redirect('/post')
+        res.redirect('/app/post')
     }
 });
 
 
 // Endpoint gets all reviews from the database
-app.get('/home', (req, res, next) => {
+app.get('/app/home', (req, res, next) => {
 
     // Select all reviews from the database
     const stmt = db.prepare(`SELECT reviews.*, users.username 
@@ -340,7 +340,7 @@ app.get('/home', (req, res, next) => {
 
 
 // Endpoint gets all reviews posted by the current user
-app.get('/user-reviews/reviews', (req, res, next) => {
+app.get('/app/user-reviews/reviews', (req, res, next) => {
 
     // Select all reviews from the database made by the current user (through the uid column)
     const stmt = db.prepare(`SELECT * FROM reviews WHERE uid='${req.app.get('id')}' ORDER BY created DESC;`);
