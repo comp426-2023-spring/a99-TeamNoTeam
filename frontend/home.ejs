@@ -4,7 +4,7 @@
  -->
  <link href="/css/styles.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <a href="/api/home">
+ <a href="/app/home">
     <div class="title">
         <span class="material-symbols-outlined" style="color:white">
             lunch_dining
@@ -14,7 +14,7 @@
 </a>
 
 <div class="home-actions-container" >
-    <a href="/api/profile">
+    <a href="/app/profile">
         <button class="profile-button"> 
             <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                 <span style="position: relative; top: 12px;left: 4px;">Profile</span>
@@ -22,7 +22,7 @@
             </div>
         </button>
     </a>
-    <a href="/api/post">
+    <a href="/app/post">
         <button class="profile-button"> 
             <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                 <span style="position: relative; top: 12px;left: 4px;">Post Review</span>
@@ -40,7 +40,7 @@
     <% for(var i=0; i < reviews.length; i++) { %>
         <div style="display: flex; flex-direction: column; justify-content: flex-start;">
             <div style="margin-bottom: 10px;" class="review-box">
-                <img class="review-image"src="<%= reviews[i].photo %>">
+                <img class="review-image"src="/<%= reviews[i].photo %>">
                 <div class="review-description" style = "margin-top: 0">
                     <h5 style="margin-bottom: 15px;"><%= reviews[i].title %></h5>
                     <div class="review-rating">
