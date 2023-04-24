@@ -3,7 +3,7 @@
     - add profile button
  -->
  <link href="/css/styles.css" rel="stylesheet" type="text/css">
- <a href="/home">
+ <a href="/api/home">
     <div class="title">
         <span class="material-symbols-outlined" style="color:white">
             lunch_dining
@@ -15,7 +15,7 @@
 <div class="profile-container">
     <div class="profile-actions-container">
         <div>
-            <a href="/home">
+            <a href="/api/home">
                 <button class="profile-button"> 
                     <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                         <span style="position: relative; top: 12px;left: 4px;">Home</span>
@@ -25,7 +25,7 @@
             </a>
         </div>
         <div>
-            <a href="/profile">
+            <a href="/api/profile">
                 <button class="profile-button"> 
                     <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                         <span style="position: relative; top: 12px;left: 4px;">Account Details</span>
@@ -35,7 +35,7 @@
             </a>
         </div>
         <div>
-            <a href="/user-reviews/reviews">
+            <a href="/api/user-reviews/reviews">
                 <button class="profile-button"> 
                     <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                         <span style="position: relative; top: 12px;left: 4px;">Your Reviews</span>
@@ -55,7 +55,7 @@
             </a>
         </div>
         <div>
-            <form action="/profile/delete" method="POST">
+            <form action="/api/profile/delete" method="POST">
                 <button class="profile-button" id="deleteButton"> 
                     <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
                         <span style="position: relative; top: 12px;left: 4px;">Delete Account</span>
@@ -65,7 +65,7 @@
             </form>   
         </div>
     </div>   
-    <form action="/profile" method="POST">
+    <form action="/api/profile" method="POST">
         <div class="edit-account-box">
           <h2 style="margin-bottom: -10px">User Details</h2>
           <div class="text-input">
