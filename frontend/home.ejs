@@ -41,7 +41,7 @@
         <div style="display: flex; flex-direction: column; justify-content: flex-start;">
             <div style="margin-bottom: 10px;" class="review-box">
                 <img class="review-image"src="<%= reviews[i].photo %>">
-                <div class="review-description" style = "mergin-top: 0">
+                <div class="review-description" style = "margin-top: 0">
                     <h5 style="margin-bottom: 15px;"><%= reviews[i].title %></h5>
                     <div class="review-rating">
                         <% for(var j=0; j < reviews[i].rating; j++) { %>
@@ -53,7 +53,7 @@
                     </div>
                     <h4><%= reviews[i].description %></h4>
                 </div>
-                <h5 style="position: relative; top: 0; right: -20px"><%= reviews[i].username%></h5>
+                <h5 style="position: relative; top: -50px; right:0px; color: gray">@<%= reviews[i].username%></h5>
             </div>
         </div>
     <% } %>
