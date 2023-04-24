@@ -18,10 +18,11 @@ On HeelMeals, users can create an account and log in to see other students’ re
 
 1. Clone this repository
 2. Inside the directory, run `npm install` to install all required dependencies
-3. To start the application, run `npm test`
+3. Run `npm run` to see all of the app's server scripts
+4. To start the application, run `npm test` or `npm start`
 	- The application on default will be reachable at localhost:3000/
-	- To choose a different port, run the app with `node backend/server.js —port=[insert port number]`
-4. Type `Ctrl + C` to terminate the application
+	- To choose a different port, run the app with `node backend/server.js -—port=[insert port number]`
+5. Type `Ctrl + C` to terminate the application
 
 
 ## Dependency List

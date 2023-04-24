@@ -1,13 +1,15 @@
 ## Heelmeals Database
 
 ### Tables:
+-------------
 There are three tables in this database:
 
 - **users** - stores user information including name, username, email, and password
 - **reviews** - stores food reviews for our site, and keeps note of who posted each one
-- **logs** - [Need to add]
+- **logs** - stores all interactions on the site (access logs)
 
 ### Schemas:
+-------------
 **users Table**:
 | field | type |
 | --- | ----------- |
@@ -19,6 +21,7 @@ There are three tables in this database:
 
 Notes:
 - any one email can only be registered under one account.
+-----------------
 
 **reviews Table**:
 | field | type |
@@ -38,6 +41,8 @@ Notes:
 - uid references a user id of who posted that review.
 - location is for a future extension and refers to the dining hall location (e.g. Chase, Lenoir, etc.)
 - meal is for a future extension and refers to the "time of day" the meal is (e.g. Breakfast, Brunch, Lunch, Dinner)
+
+------------------
 
 **logs Table**:
 | field | type |
