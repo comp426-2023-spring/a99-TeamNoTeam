@@ -37,12 +37,21 @@ On HeelMeals, users can create an account and log in to see other students’ re
 
 
 ## Future Additions
-
+We are proud of the features we implemented! However, we have several future additions in mind for the site
+- Delete and edit reviews 
+	- Allows users to delete/edit a review if they made a mistake
+- Report reviews
+	- Allows users to report inappropriate content
+- Filtering reviews by various criteria
+	- Allows users to apply filters (i.e. Lenoir, Chase, lunch, dinner, dietary restrictions, star level, etc) and see only corresponding reviews
+	- Our reviews table is already set up with fields for location and mealtime to implement this in the future	
+- Searching for reviews 
+	- Allows users to search for terms that match up to a review's title and/or description and see only corresponding reviews
 
 ## More Documentation
 
 For more documentation, see the following pages:
-- [API Endpoints](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/api_endpoints.md): info about all our API endpoints, with links to the code for each route
+- [API Endpoints](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/main/docs/api_endpoints.md): info about all our API endpoints, with links to the code for each route
 - [Database](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/main/docs/database.md): info about the structure of our users, reviews, and logs database tables
-- [Roles](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/roles.md): info about the roles each of the team members performed
-- [Meeting Notes](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/373f1874ef0ce8124457eb02fd9c61234241478c/docs/meeting_notes.md): notes from each of our team meetings 
+- [Roles](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/main/docs/roles.md): info about the roles each of the team members performed
+- [Meeting Notes](https://github.com/comp426-2023-spring/a99-TeamNoTeam/blob/main/docs/meeting_notes.md): notes from each of our team meetings 
