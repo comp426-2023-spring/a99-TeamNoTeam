@@ -11,7 +11,7 @@ On HeelMeals, users can create an account and log in to see other students’ re
 
 ## Demo Video
 
-[Link](insert link)
+[Link](https://youtu.be/6em9L2bTO6g)
 	
 
 ## Installation + Run Instructions
